@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ex Member Roles | Dr. Uttam D. Kolekar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      /* Light Mode Defaults */
+      --bg-main: #f9f8f4;
+      --bg-subtle: #f0ede6;
+      --text-main: #1a1a1a;
+      --text-muted: #4a4a4a;
+      --accent: #a37c44;
+      --accent-glow: rgba(163, 124, 68, 0.25);
+      --border: rgba(0, 0, 0, 0.1);
+      --card-bg: rgba(255, 255, 255, 0.65);
+      --card-hover-bg: rgba(255, 255, 255, 0.95);
+      --blob-1: rgba(30, 54, 85, 0.15);
+      --blob-2: rgba(163, 124, 68, 0.15);
+      --header-gradient: linear-gradient(135deg, #1a1a1a 30%, var(--accent) 100%);
+      --shadow-hover: 0 25px 50px rgba(0, 0, 0, 0.1);
+      --transition-smooth: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    body.theme-dark {
+      --bg-main: #050a15;
+      --bg-subtle: #0b1120;
+      --text-main: #ffffff;
+      --text-muted: rgba(255, 255, 255, 0.7);
+      --accent-glow: rgba(163, 124, 68, 0.4);
+      --border: rgba(255, 255, 255, 0.08);
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --card-hover-bg: rgba(255, 255, 255, 0.06);
+      --blob-1: rgba(30, 54, 85, 0.8);
+      --blob-2: rgba(163, 124, 68, 0.3);
+      --header-gradient: linear-gradient(135deg, #ffffff 30%, var(--accent) 100%);
+      --shadow-hover: 0 25px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Lora', serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.8;
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding: 100px 5% 100px;
+      position: relative;
+      transition: background-color 0.8s cubic-bezier(0.22, 1, 0.36, 1), color 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Animated Background Elements */
+    body::before, body::after {
+      content: '';
+      position: fixed;
+      width: 60vw;
+      height: 60vw;
+      border-radius: 50%;
+      filter: blur(120px);
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.4;
+      animation: float 20s infinite alternate ease-in-out;
+      transition: background 0.8s ease;
+    }
+
+    body::before {
+      top: -10vw;
+      left: -10vw;
+      background: radial-gradient(circle, var(--blob-1) 0%, transparent 70%);
+    }
+
+    body::after {
+      bottom: -20vw;
+      right: -10vw;
+      background: radial-gradient(circle, var(--blob-2) 0%, transparent 70%);
+      animation-delay: -10s;
+    }
+
+    @keyframes float {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(50px, 50px) scale(1.1); }
+    }
+
+    /* Back Button & Theme Toggle */
+    .back-btn, .theme-toggle {
+      position: fixed;
+      top: 30px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      color: var(--text-main);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      z-index: 100;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .back-btn {
+      left: 40px;
+      gap: 10px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 12px 24px;
+      border-radius: 30px;
+    }
+
+    .theme-toggle {
+      right: 40px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+    }
+
+    .back-btn:hover, .theme-toggle:hover {
+      background: var(--card-hover-bg);
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px var(--accent-glow);
+    }
+
+    .back-btn svg { width: 16px; height: 16px; transition: transform 0.3s ease; }
+    .back-btn:hover svg { transform: translateX(-4px); }
+
+    .theme-toggle svg { width: 20px; height: 20px; position: absolute; transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+    .theme-toggle .sun { transform: translateY(30px) rotate(90deg); opacity: 0; }
+    body.theme-dark .theme-toggle .moon { transform: translateY(-30px) rotate(-90deg); opacity: 0; }
+    body.theme-dark .theme-toggle .sun { transform: translateY(0) rotate(0); opacity: 1; }
+
+    /* Header Styling */
+    .header {
+      text-align: center;
+      margin-bottom: 70px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .header-subtitle {
+      font-family: 'Lora', serif;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: block;
+      font-weight: 600;
+    }
+
+    .header-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.2;
+      position: relative;
+      display: inline-block;
+      letter-spacing: -0.01em;
+    }
+
+    .header-title::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    /* Premium Editorial List Layout */
+    .events-list {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      counter-reset: event-counter; /* Initialize counter */
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .event-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 35px 40px;
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      transition: var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+      counter-increment: event-counter; /* Increment for each card */
+    }
+
+    /* Giant Watermark Number */
+    .event-item::before {
+      content: "0" counter(event-counter); 
+      position: absolute;
+      right: 20px;
+      bottom: -15px;
+      font-family: 'Playfair Display', serif;
+      font-size: 120px;
+      font-weight: 700;
+      color: var(--text-main);
+      opacity: 0.03;
+      line-height: 1;
+      pointer-events: none;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    /* Fix double-digit counters (10, 11, etc) removing the prefix '0' */
+    .event-item:nth-child(n+10)::before {
+      content: counter(event-counter);
+    }
+
+    /* Left Glow Accent Line */
+    .event-item::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .event-item:hover {
+      transform: translateY(-5px) scale(1.01); 
+      background: var(--card-hover-bg);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(163, 124, 68, 0.3);
+    }
+
+    .event-item:hover::before {
+      opacity: 0.08;
+      transform: scale(1.05) translateY(-5px);
+      color: var(--accent);
+    }
+
+    .event-item:hover::after {
+      opacity: 1;
+    }
+
+    /* Glowing Node replacing bullet */
+    .node-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+    }
+
+    .node-core {
+      width: 10px;
+      height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    .node-pulse {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: var(--accent);
+      border-radius: 50%;
+      z-index: 1;
+      animation: pulse 2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.8; }
+      100% { transform: scale(3); opacity: 0; }
+    }
+
+    .event-text {
+      font-size: 18px;
+      color: var(--text-main);
+      line-height: 1.7;
+      font-weight: 500;
+      position: relative;
+      z-index: 2; /* Keep above watermark */
+      margin: 0;
+    }
+
+    /* 3D Perspective Entrance Animation */
+    .perspective-in {
+      opacity: 0;
+      transform: perspective(1000px) rotateX(-15deg) translateY(40px);
+      filter: blur(10px);
+      transition: opacity 0.9s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                  transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                  filter 0.9s ease;
+      will-change: transform, opacity, filter;
+      transform-origin: top center;
+    }
+
+    .perspective-in.visible {
+      opacity: 1;
+      transform: perspective(1000px) rotateX(0) translateY(0);
+      filter: blur(0);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      body { padding: 50px 5%; }
+      .header { margin-bottom: 50px; }
+      .event-item { padding: 25px; gap: 15px; }
+      .event-item::before { font-size: 80px; bottom: 0; right: 10px; }
+      .event-text { font-size: 16px; }
+      .node-container { width: 18px; height: 18px; }
+      .node-core { width: 8px; height: 8px; }
+      .back-btn { top: 20px; left: 20px; padding: 8px 16px; font-size: 12px; }
+      .theme-toggle { top: 20px; right: 20px; width: 38px; height: 38px;}
+    }
+  </style>
+</head>
+<body class="theme-dark">
+
+  <a href="index.html" class="back-btn perspective-in">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="19" y1="12" x2="5" y2="12"></line>
+      <polyline points="12 19 5 12 12 5"></polyline>
+    </svg>
+    Return to Profile
+  </a>
+
+  <button id="theme-toggle" class="theme-toggle perspective-in" aria-label="Toggle Theme">
+    <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+    <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </button>
+
+  <header class="header perspective-in" style="margin-top: 40px; margin-bottom: 60px;">
+    <span class="header-subtitle">Past Affiliations</span>
+    <h2 class="header-title" style="font-size: clamp(28px, 4vw, 42px);">Ex Member Roles</h2>
+  </header>
+
+  <main class="events-list" style="max-width: 900px; margin: 0 auto; padding-bottom: 60px;">
+    
+    <div class="event-item perspective-in">
+      <div class="node-container">
+        <div class="node-pulse"></div>
+        <div class="node-core"></div>
+      </div>
+      <p class="event-text">Academic Council, University of Mumbai.</p>
+    </div>
+
+    <div class="event-item perspective-in">
+      <div class="node-container">
+        <div class="node-pulse"></div>
+        <div class="node-core"></div>
+      </div>
+      <p class="event-text">Board of University Teaching & Research for the faculty of Technology, University of Mumbai.</p>
+    </div>
+
+    <div class="event-item perspective-in">
+      <div class="node-container">
+        <div class="node-pulse"></div>
+        <div class="node-core"></div>
+      </div>
+      <p class="event-text">Research and Recognition Committee for Ad-hoc Board of Studies in Electronics & Telecommunications Engineering.</p>
+    </div>
+
+  </main>
+
+  <script>
+    // Theme Toggle Logic
+    const themeToggle = document.getElementById('theme-toggle');
+    let manualTheme = localStorage.getItem('theme_seminars');
+
+    if (manualTheme === 'light') {
+      document.body.classList.remove('theme-dark');
+    } else {
+      document.body.classList.add('theme-dark');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('theme-dark');
+      manualTheme = document.body.classList.contains('theme-dark') ? 'dark' : 'light';
+      localStorage.setItem('theme_seminars', manualTheme);
+    });
+
+    // Staggered 3D Scroll Reveal Animation
+    const observer = new IntersectionObserver((entries, obs) => {
+      let delay = 0;
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, delay);
+          delay += 120; // Slightly longer stagger for the 3D effect
+          obs.unobserve(entry.target); 
+        }
+      });
+    }, { 
+      threshold: 0.1, 
+      rootMargin: "0px 0px -20px 0px" 
+    });
+
+    document.querySelectorAll('.perspective-in').forEach(element => observer.observe(element));
+  </script>
+</body>
+</html>

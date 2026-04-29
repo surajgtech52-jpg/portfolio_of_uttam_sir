@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conference Session Chair | Dr. Uttam D. Kolekar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      /* Light Mode Defaults */
+      --bg-main: #f9f8f4;
+      --bg-subtle: #f0ede6;
+      --text-main: #1a1a1a;
+      --text-muted: #4a4a4a;
+      --accent: #a37c44;
+      --accent-glow: rgba(163, 124, 68, 0.15);
+      --border: rgba(0, 0, 0, 0.08);
+      --card-bg: rgba(255, 255, 255, 0.6);
+      --card-hover-bg: rgba(255, 255, 255, 0.95);
+      --blob-1: rgba(30, 54, 85, 0.15);
+      --blob-2: rgba(163, 124, 68, 0.15);
+      --header-gradient: linear-gradient(135deg, #1a1a1a 30%, var(--accent) 100%);
+      --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.08);
+      --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    body.theme-dark {
+      --bg-main: #050a15;
+      --bg-subtle: #0b1120;
+      --text-main: #ffffff;
+      --text-muted: rgba(255, 255, 255, 0.65);
+      --accent-glow: rgba(163, 124, 68, 0.3);
+      --border: rgba(255, 255, 255, 0.08);
+      --card-bg: rgba(255, 255, 255, 0.02);
+      --card-hover-bg: rgba(255, 255, 255, 0.04);
+      --blob-1: rgba(30, 54, 85, 0.8);
+      --blob-2: rgba(163, 124, 68, 0.3);
+      --header-gradient: linear-gradient(135deg, #ffffff 30%, var(--accent) 100%);
+      --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Lora', serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.8;
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding: 100px 5% 100px;
+      position: relative;
+      transition: background-color 0.8s cubic-bezier(0.22, 1, 0.36, 1), color 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Animated Background Elements */
+    body::before, body::after {
+      content: '';
+      position: fixed;
+      width: 60vw;
+      height: 60vw;
+      border-radius: 50%;
+      filter: blur(120px);
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.4;
+      animation: float 20s infinite alternate ease-in-out;
+      transition: background 0.8s ease;
+    }
+
+    body::before {
+      top: -10vw;
+      left: -10vw;
+      background: radial-gradient(circle, var(--blob-1) 0%, transparent 70%);
+    }
+
+    body::after {
+      bottom: -20vw;
+      right: -10vw;
+      background: radial-gradient(circle, var(--blob-2) 0%, transparent 70%);
+      animation-delay: -10s;
+    }
+
+    @keyframes float {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(50px, 50px) scale(1.1); }
+    }
+
+    /* Back Button */
+    .back-btn {
+      position: fixed;
+      top: 30px;
+      left: 40px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 12px 24px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: var(--transition-smooth);
+      z-index: 100;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .back-btn:hover {
+      background: var(--card-hover-bg);
+      border-color: var(--accent);
+      transform: translateX(-5px);
+    }
+
+    .back-btn svg {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.3s ease;
+    }
+
+    .back-btn:hover svg {
+      transform: translateX(-4px);
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 30px;
+      right: 40px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      overflow: hidden;
+      z-index: 100;
+    }
+
+    .theme-toggle:hover {
+      transform: translateY(-2px) rotate(5deg);
+      box-shadow: 0 8px 25px rgba(163, 124, 68, 0.2);
+      border-color: var(--accent);
+      background: var(--card-hover-bg);
+    }
+
+    .theme-toggle svg {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .theme-toggle .sun {
+      transform: translateY(30px) rotate(90deg);
+      opacity: 0;
+    }
+
+    body.theme-dark .theme-toggle .moon {
+      transform: translateY(-30px) rotate(-90deg);
+      opacity: 0;
+    }
+
+    body.theme-dark .theme-toggle .sun {
+      transform: translateY(0) rotate(0);
+      opacity: 1;
+    }
+
+    /* Header Styling */
+    .header {
+      text-align: center;
+      margin-bottom: 90px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      z-index: 10;
+    }
+
+    .header-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      background: var(--header-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+    }
+
+    /* Grid Layout for Cards */
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Premium Spotlight Card Styling */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 35px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      text-decoration: none;
+    }
+
+    /* Spotlight Hover Effect */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: var(--y, 0);
+      left: var(--x, 0);
+      transform: translate(-50%, -50%);
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(163, 124, 68, 0.3);
+      background: var(--card-hover-bg);
+      box-shadow: var(--shadow-hover);
+    }
+
+    /* Card Content */
+    .card-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-desc {
+      font-size: 16px;
+      color: var(--text-main);
+      line-height: 1.8;
+      font-weight: 500;
+    }
+
+    /* Animation Classes */
+    .reveal {
+      opacity: 0;
+      filter: blur(12px);
+      transform: translateY(50px) scale(0.95);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, opacity, filter;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0) scale(1);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      body { padding: 50px 5%; }
+      .header { margin-bottom: 60px; margin-top: 50px; }
+      .grid-container {
+        grid-template-columns: 1fr;
+      }
+      .back-btn {
+        top: 20px;
+        left: 20px;
+        padding: 8px 16px;
+        font-size: 12px;
+      }
+      .theme-toggle {
+        top: 20px;
+        right: 20px;
+      }
+    }
+  </style>
+</head>
+<body class="theme-dark">
+
+  <a href="index.html" class="back-btn reveal">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="19" y1="12" x2="5" y2="12"></line>
+      <polyline points="12 19 5 12 12 5"></polyline>
+    </svg>
+    Return to Profile
+  </a>
+
+  <button id="theme-toggle" class="theme-toggle reveal" aria-label="Toggle Theme">
+    <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+    <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </button>
+
+  <header class="header reveal">
+    <h1 class="header-title">CONFERENCE SESSION CHAIR</h1>
+  </header>
+
+  <main class="grid-container">
+    
+    <a href="#" class="card reveal" style="transition-delay: 0.1s;">
+      <div class="card-content">
+        <p class="card-desc">Session Chair at ICWiCOM-2019, 11th &amp; 12th Oct, 2019.</p>
+      </div>
+    </a>
+
+    <a href="#" class="card reveal" style="transition-delay: 0.2s;">
+      <div class="card-content">
+        <p class="card-desc">Session Chair and Jury for Poster presentation at IEEE 8th International Advance Computing Conference (IACC 2018) on 14th &amp; 15th December 2018, organized by Bennett University, Greater Noida.</p>
+      </div>
+    </a>
+
+    <a href="#" class="card reveal" style="transition-delay: 0.3s;">
+      <div class="card-content">
+        <p class="card-desc">Session Chair for "International Conference on Emerging Trends in Computing &amp; Communication (ICETCC)" 12th Jan 2017, organized by Saraswati College of Engineering, Khargar, Navi Mumbai.</p>
+      </div>
+    </a>
+
+    <a href="#" class="card reveal" style="transition-delay: 0.4s;">
+      <div class="card-content">
+        <p class="card-desc">Session Chair and Reviewed, International Conference held in Rizvi College of Engineering, Mumbai.</p>
+      </div>
+    </a>
+
+    <a href="#" class="card reveal" style="transition-delay: 0.5s;">
+      <div class="card-content">
+        <p class="card-desc">Session Chair, International Conference on Wireless Communication (ICWiCOM 2019) at D.J. Sanghvi College of Engineering, Vile Parle, dated 12-10-2019.</p>
+      </div>
+    </a>
+
+    <a href="#" class="card reveal" style="transition-delay: 0.6s;">
+      <div class="card-content">
+        <p class="card-desc">Session Chair, 9th International Conference and Workshop - MULTICONW-2017 on Advances in Electronics Engineering at Thakur College of Engineering and Technology, Kandivali, dated 25-02-2017.</p>
+      </div>
+    </a>
+
+    <a href="#" class="card reveal" style="transition-delay: 0.7s;">
+      <div class="card-content">
+        <p class="card-desc">Session Chair, 9th International Conference and Workshop - MULTICONW-2018 on Advances in Electronics Engineering at Thakur College of Engineering and Technology, Kandivali, dated 23-02-2018.</p>
+      </div>
+    </a>
+
+    <a href="#" class="card reveal" style="transition-delay: 0.1s;">
+      <div class="card-content">
+        <p class="card-desc">Session Chair, 5th International Conference on Innovation &amp; Research in technology and Engineering -ICIRTE 2018, dated 21-12-2018.</p>
+      </div>
+    </a>
+
+    <a href="#" class="card reveal" style="transition-delay: 0.2s;">
+      <div class="card-content">
+        <p class="card-desc">Session Chair, AVISHKAR-2019 at Saraswati College of Engineering, Kharghar, dated 02-04-2019.</p>
+      </div>
+    </a>
+
+    <a href="#" class="card reveal" style="transition-delay: 0.3s;">
+      <div class="card-content">
+        <p class="card-desc">Session Chair, Internal Conference on Emerging Trends in Computing and Communication (ICETCC-17) at Saraswati College of Engineering, Kharghar, dated 10-01-2017.</p>
+      </div>
+    </a>
+
+    <a href="#" class="card reveal" style="transition-delay: 0.4s;">
+      <div class="card-content">
+        <p class="card-desc">Session Chair, Conference on Advances in Electronics Engineering (CAEE 2018) at Thakur College of Engineering and Technology, Kandivali, dated 23-02-2018.</p>
+      </div>
+    </a>
+
+    <a href="#" class="card reveal" style="transition-delay: 0.5s;">
+      <div class="card-content">
+        <p class="card-desc">Session Chair, 4th International Conference on Innovation and Research in Technology &amp; Engineering at Padmabhushan Vasantdada Patil Pratishthan's College of Engineering, dated 27-10-2017.</p>
+      </div>
+    </a>
+
+    <a href="#" class="card reveal" style="transition-delay: 0.6s;">
+      <div class="card-content">
+        <p class="card-desc">Session Chair, International Conference on Advance Computing Technologies and Applications at D.J. Sanghvi College of Engineering, Vile Parle, dated 27-03-2015.</p>
+      </div>
+    </a>
+
+  </main>
+
+  <script>
+    // Card Spotlight Glow Effect
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--x', `${x}px`);
+        card.style.setProperty('--y', `${y}px`);
+      });
+    });
+
+    // Theme Toggle Logic
+    const themeToggle = document.getElementById('theme-toggle');
+    let manualTheme = localStorage.getItem('theme_conference');
+
+    // Always start in dark mode unless explicitly set to light
+    if (manualTheme === 'light') {
+      document.body.classList.remove('theme-dark');
+    } else {
+      document.body.classList.add('theme-dark');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('theme-dark');
+      manualTheme = document.body.classList.contains('theme-dark') ? 'dark' : 'light';
+      localStorage.setItem('theme_conference', manualTheme);
+    });
+
+    // Intersection Observer for Scroll Reveal Animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -30px 0px"
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target); // Run animation only once
+        }
+      });
+    }, observerOptions);
+
+    // Target all elements with the 'reveal' class
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>

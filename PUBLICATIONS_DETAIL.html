@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications & Conferences | Dr. Uttam D. Kolekar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,600&display=swap" rel="stylesheet">
+    
+    <style>
+      :root {
+        /* Light Mode Defaults */
+        --bg-main: #f9f8f4;
+        --bg-subtle: #f0ede6;
+        --text-main: #1a1a1a;
+        --text-muted: #4a4a4a;
+        --accent: #a37c44;
+        --accent-glow: rgba(163, 124, 68, 0.15);
+        --border: rgba(0, 0, 0, 0.08);
+        --card-bg: rgba(255, 255, 255, 0.6);
+        --card-hover-bg: rgba(255, 255, 255, 0.95);
+        --blob-1: rgba(30, 54, 85, 0.15);
+        --blob-2: rgba(163, 124, 68, 0.15);
+        --header-gradient: linear-gradient(135deg, #1a1a1a 30%, var(--accent) 100%);
+        --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.05);
+        --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      body.theme-dark {
+        --bg-main: #050a15;
+        --bg-subtle: #0b1120;
+        --text-main: #ffffff;
+        --text-muted: rgba(255, 255, 255, 0.7);
+        --accent-glow: rgba(163, 124, 68, 0.3);
+        --border: rgba(255, 255, 255, 0.08);
+        --card-bg: rgba(255, 255, 255, 0.02);
+        --card-hover-bg: rgba(255, 255, 255, 0.05);
+        --blob-1: rgba(30, 54, 85, 0.8);
+        --blob-2: rgba(163, 124, 68, 0.3);
+        --header-gradient: linear-gradient(135deg, #ffffff 30%, var(--accent) 100%);
+        --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.4);
+      }
+
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: 'Lora', serif;
+        background: var(--bg-main);
+        color: var(--text-main);
+        line-height: 1.8;
+        min-height: 100vh;
+        overflow-x: hidden;
+        padding: 100px 5% 100px;
+        position: relative;
+        transition: background-color 0.8s cubic-bezier(0.22, 1, 0.36, 1), color 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      /* Animated Background Elements */
+      body::before, body::after {
+        content: '';
+        position: fixed;
+        width: 60vw;
+        height: 60vw;
+        border-radius: 50%;
+        filter: blur(120px);
+        z-index: -1;
+        pointer-events: none;
+        opacity: 0.4;
+        animation: float 20s infinite alternate ease-in-out;
+        transition: background 0.8s ease;
+      }
+
+      body::before {
+        top: -10vw;
+        left: -10vw;
+        background: radial-gradient(circle, var(--blob-1) 0%, transparent 70%);
+      }
+
+      body::after {
+        bottom: -20vw;
+        right: -10vw;
+        background: radial-gradient(circle, var(--blob-2) 0%, transparent 70%);
+        animation-delay: -10s;
+      }
+
+      @keyframes float {
+        0% { transform: translate(0, 0) scale(1); }
+        100% { transform: translate(50px, 50px) scale(1.1); }
+      }
+
+      /* Navigation */
+      .back-btn, .theme-toggle {
+        position: fixed;
+        top: 30px;
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 30px;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        color: var(--text-main);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: var(--transition-smooth);
+        z-index: 100;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      }
+
+      .back-btn {
+        left: 40px;
+        gap: 10px;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        padding: 12px 24px;
+        text-decoration: none;
+      }
+
+      .theme-toggle {
+        right: 40px;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+      }
+
+      .back-btn:hover, .theme-toggle:hover {
+        background: var(--card-hover-bg);
+        border-color: var(--accent);
+        transform: translateY(-2px);
+      }
+
+      .theme-toggle svg { width: 20px; height: 20px; position: absolute; transition: all 0.6s; }
+      .theme-toggle .sun { transform: translateY(30px) rotate(90deg); opacity: 0; }
+      body.theme-dark .theme-toggle .moon { transform: translateY(-30px) rotate(-90deg); opacity: 0; }
+      body.theme-dark .theme-toggle .sun { transform: translateY(0) rotate(0); opacity: 1; }
+
+      /* Container */
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 10;
+      }
+
+      .section-divider {
+        text-align: center;
+        margin-bottom: 40px;
+        margin-top: 60px;
+      }
+
+      .section-divider:first-child {
+        margin-top: 20px;
+      }
+
+      .section-divider h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(28px, 4vw, 42px);
+        background: var(--header-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        display: inline-block;
+        padding-bottom: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+      }
+
+      /* Premium Academic Citation List */
+      .citation-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        counter-reset: pub-counter; /* Initialize the counter for each list */
+      }
+
+      .citation-item {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 25px 30px 25px 80px; /* Extra left padding for the number */
+        position: relative;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        transition: var(--transition-smooth);
+        display: flex;
+        align-items: center;
+      }
+
+      .citation-item:hover {
+        transform: translateX(8px);
+        background: var(--card-hover-bg);
+        border-color: var(--accent);
+        box-shadow: var(--shadow-hover);
+      }
+
+      /* Auto-generated Glowing Numbers */
+      .citation-item::before {
+        counter-increment: pub-counter;
+        content: counter(pub-counter) ".";
+        position: absolute;
+        left: 25px;
+        top: 25px;
+        font-family: 'Playfair Display', serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--accent);
+        text-shadow: 0 0 10px var(--accent-glow);
+      }
+
+      .citation-text {
+        font-size: 16px;
+        color: var(--text-main);
+        line-height: 1.6;
+        margin: 0;
+      }
+
+      /* Animation */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        filter: blur(5px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out, filter 0.6s ease-out;
+        will-change: transform, opacity;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        body { padding: 80px 5% 50px; }
+        .citation-item { padding: 20px 20px 20px 60px; }
+        .citation-item::before { left: 15px; top: 20px; font-size: 18px; }
+        .citation-text { font-size: 14px; }
+        .back-btn { top: 20px; left: 20px; padding: 8px 16px; font-size: 12px; }
+        .theme-toggle { top: 20px; right: 20px; width: 38px; height: 38px;}
+      }
+    </style>
+</head>
+<body class="theme-dark">
+
+  <a href="index.html" class="back-btn fade-in">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg> Return to Profile
+  </a>
+  
+  <button id="theme-toggle" class="theme-toggle fade-in" aria-label="Toggle Theme">
+    <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+  </button>
+
+  <main class="container">
+
+    <div class="section-divider fade-in">
+        <h2>Publications Detail (International Journal)</h2>
+    </div>
+
+    <div class="citation-list">
+        <div class="citation-item fade-in"><p class="citation-text">ACSRO: Adaptive cuckoo search based rate adjustment for optimized congestion avoidance and control in wireless sensor networks ,V Narawade, UD Kolekar, Alexandria engineering journal 57 (1), 131-145, 2018</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Trust-Based Secure Routing in Mobile Ad Hoc Network Using Hybrid Optimization Algorithm, MM Mukhedkar, U Kolekar., The Computer Journal 62 (10), 1528-1545,2019</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Macrocell–femtocell resource allocation via hybrid optimization algorithm, Shailaja Sanjay Mohite, Uttam D Kolekar, International Journal of Intelligent Unmanned Systems, ISSN: 2049-6427,2021</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Mobility Management in Vehicular Adhoc Network based on RSA Algorithm, P Sapkale, U Kolekar, M Mukhedkar, Asian Journal For Convergence In Technology (AJCT) ISSN-2350-1146 7 (1), 44-48,2021</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Resource Allocation Model and Power Control in Macrocell-Femtocell Networks by LA Algorithm, Shailaja Mohite, Uttam Kolekar, 2020</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">E-TDGO: An encrypted trust-based dolphin glowworm optimization for secure routing in mobile ad hoc network, MM Mukhedkar, U Kolekar, International Journal of Communication Systems 33 (7), e4252, 2020</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Ocular artifact suppression in multichannel EEG using dynamic segmentation and enhanced wICA, KP Paradeshi, UD Kolekar, IETE Journal of Research, 1-14, 2020</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">T-TOHIP: Trust-based topology-hiding multipath routing in mobile ad hoc network, RK Ambekar, UD Kolekar, Evolutionary Intelligence, 1-15, 2019</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Fuzzy-based decisive approach for call admission control in the LTE networks, VS Jadhav, UD Kolekar, Evolutionary Intelligence, 1-18, 2019</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Hybrid PSGWO algorithm for trust-based secure routing in MANET, MM Mukhedkar, U Kolekar, Journal of Networking and Communication Systems (JNACS) 2 (3), 2019</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Heuristics approach to speeding up saliency detection OS Rajankar, UD Kolekar, SN Talbar, Signal, Image and Video Processing 13 (3), 465-473, 2019</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Performance Analysis of Optimal Versus Energy-Based Selection of Receiver Antenna for MIMO Systems, N Deotale, U Kolekar, Computing, Communication and Signal Processing, 89-96, 2019</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Mobility management for 5G mobile networks, P Sapkale, UD Kolekar, International Journal of Computer Applications 182 (26), 1-4, 2018</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">FL-TOHIP (Fractional Lion Algorithm to Topology-Hiding Multipath Routing Protocol) in Mobile ad hoc Network, RK Ambekar, UD Kolekar, Journal of Intelligent Systems 27 (4), 523-536, 2018</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">A hybrid optimization model for resource allocation in OFDM-based cognitive radio system, SS Nanivadekar, UD Kolekar, Evolutionary Intelligence, 1-12, 2018</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">An approach involving dynamic group search optimization for allocating resources in OFDM-based cognitive radio system, SS Nanivadekar, UD Kolekar, Alexandria engineering journal 57 (1), 193-202, 2018</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Project Based Learning (PBL) in Indian technical education, UD Kolekar, SS Nanivadekar, MSB Takmare, Journal of Engineering Practices and Futuristic Technologies (JepFT) 1 (1), 2018</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Removing Jaw Clench, Teeth Squeeze and Forehead Movement EMG Artifacts from EEG Signal using Dynamic Size Segmentation and Multilevel Decomposed Wavelet with Adaptive Thresholding, KP Paradeshi, UD Kolekar, Indian Journal of Science and Technology 10 (29)</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">TRUST BASED MULTI PATH ROUTING & TOPOLOGY HIDING IN MOBILE AD HOC NETWORK: A SECURE PERSPECTIVE., RK Ambekar, UD Kolekar, International Journal of Advanced Research in Computer Science 8 (7), 2017</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">NNRA-CAC: NARX neural network-based rate adjustment for congestion avoidance and control in wireless sensor networks, VE Narawade, UD Kolekar, New Review of Information Networking 22 (2), 85-110, 2017</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Occular Artifacts Suppression from Multichannel EEG Signal Using Adaptive Threshold and Multilevel Decomposed Wavelets with Automatic Independent Components, KP Paradeshi, UD Kolekar, International Journal of Applied Engineering Research 12 (11), 2887-2892, 2017</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Palm print recognition using textural Harlick feature, JA Shaikh, UD Kolekar, Int. J. Appl. Eng. Res 12 (11), 2922-2925, 2017</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Effect of Single and Multiple ROI Coding on JPEG2000 Performance, OS Rajankar, UD Kolekar, International Journal of Image, Graphics and Signal Processing 8 (4), 29, 2016</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Review on Latest Multichannel EEG Acquisition and Artifact Filtering Methods, KP Paradeshi, UD Kolekar, International Journal of Computer Applications 975, 8887, 2016</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Review of hand feature of unimodal and multimodal biometric system, J Shaikh, D Uttam, International Journal of Computer Applications 975, 8887, 2016</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Ergodic capacity based antenna selection in MIMO for Rayleigh fading, N Deotale, U Kolekar, V Hendre, 2015 International Conference on Information Processing (ICIP), 317-321, 2015</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Scale space reduction with interpolation to speed up visual saliency detection, OS Rajankar, UD Kolekar, International Journal of Image, Graphics and Signal Processing 7 (8), 58, 2015</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">TCP-Costco Reno: New Variant by Improving Bandwidth Estimation to adapt over MANETs, PB Khelage, UD Kolekar, International Journal of advanced computer science and applications 5 (02), 2014</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Improving TCP Throughput Using Modified Packet Reordering Technique (MPRT) Over Manets, PB Khelage, UD Kolekar, International Journal of advanced Computer Science and Applications 5 (8), 2014</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">High Frequency Component based Addition Algorithm of Digital Image Watermarking, AR Madane, UD Kolekar, International Journal of Computer Applications 50 (10), 2012</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Use of DWT: Replacement Phenomenon of Digital Image Watermarking Dr. Uttam D. Kolekar , Amol R. Madane, International Journal of Emerging Technology and Advanced Engineering, 2012</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Generalized Multiple ROI Prioritization in JPEG2000 for Natural Images Omprakash Rajankar, Dr. Uttam Kolekar, International Journal of Computer Science and Information Technologies, Vol. 6 (2) , 2015, 1636-1642</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">REVIEW ON RESOURCE ALLOCATION MECHANISMS IN COGNITIVE RADIO Mr. Sameer Suresh Nanivadekar, Dr. Uttam D. Kolekar, Journal of Information and Computational Science ISSN: 1548-7741, Volume 11 Issue 3 – 2018</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Hybrid PSGWO Algorithm for Trust-Based Secure Routing in MANET Moresh Madhukar Mukhedkar, Uttam Kolekar, Journal of Networking and Communication Systems, Vol.2 No.3 2019</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">PERFORMANCE COPARISON OF ERGODIC CAPACITY FOR MIMO Dr. Uttam Kolekar*, Prof. N. T. Deotale, INTERNATIONAL JOURNAL OF ENGINEERING SCIENCES & RESEARCH TECHNOLOGY, ISSN: 2277-9655</p></div>
+    </div>
+
+    <div class="section-divider fade-in">
+        <h2>Publications Detail (National Journal)</h2>
+    </div>
+
+    <div class="citation-list">
+        <div class="citation-item fade-in"><p class="citation-text">Online Sign-mark Conformation using Electronic Sign-mark Application Dr.Uttam D. Kolekar Akshay A. Yadav, Journal of Engineerng Practices and Futuristic Technoloies,</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">GREEN ULTRA DENSE NETWORKS Uttam Kolekar, Manjusha Deshmukh Shraddha Sawant, Journal of Engineerng Practices and Futuristic Technoloies</p></div>
+    </div>
+
+    <div class="section-divider fade-in">
+        <h2>International Conferences</h2>
+    </div>
+
+    <div class="citation-list">
+        <div class="citation-item fade-in"><p class="citation-text">Mode Selection Criterion Using Statistics for Direct Link Communication in Next Generation,P Sapkale, U Kolekar, Proceedings of International Conference on Wireless Communication: ICWiCom,2022</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Spaced Repetition Based Adaptive E-Learning Framework, Amit Kharwal, Neelay Umrotkar, Varun Godambe, Uttam Kolekar, Vishal Badgujar, International Conference on Deep Learning, Artificial Intelligence and Robotics, 2022</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Power Control Optimization Model in Femto-Macro Networks by CSO Algorithm, Shailaja Sanjay Mohite, Uttam Kolekar, 2021 International Conference on Communication information and Computing Technology (ICCICT), 2021</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Modified Performance Based D2D Mobility Management Scheme using Mode Selection for Next Generation, P Sapkale, U Kolekar, 2021 6th International Conference for Convergence in Technology (I2CT), 1-5, 2021</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Resource Allocation Model and Power Control in Macrocell-Femtocell Networks by Lion Algorithm, SS Mohite, U Kolekar, 2021 6th International Conference for Convergence in Technology (I2CT), 1-4</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Mobility Management Based Mode Selection for the Next Generation Network, Pallavi Sapkale, Uttam D Kolekar, Navin Kumar, International Conference on Ubiquitous Communications and Network Computing, 16-25, Springer, Cham, 2021</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Modified Naïve Bayes Classifier for Mode Switching and Mobility Management Using Cellular Networks, PV Sapkale, UD Kolekar, Wireless Personal Communications 116 (3), 2345-2366, 2021</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Handover decision algorithm for next generation, P Sapkale, U Kolekar, Proceedings of International Conference on Wireless Communication, 269-277, 2022</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Adaptive and Non-Adaptive Bandwidth Allocation Schemes for Call Admission Control in Cellular Networks, VS Jadhav, U Kolekar, P Sapkale, 2019 2nd International Conference on Intelligent Computing</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Removal of ocular artifacts from multichannel EEG signal using wavelet enhanced ICA, KP Paradeshi, Research Scholar, UD Kolekar, International Conference on Energy, Communication, Data Analytics and Soft Computing (ICECDS), 383-387, IEEE</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Palm print recognition using DWT and textural feature, Juberahmad A Shaikh, Uttam D Kolekar, 2017 International Conference on Energy, Communication, Data Analytics and Soft Computing (ICECDS), 2063-2068, IEEE, 2017</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Implementation of real time secure routing protocol for mobile ad HOC network and AES for disaster affected area, Moresh M Mukhedkar, Uttam D Kolekar, 2017 International Conference on Computing Methodologies and Communication (ICCMC), 491-496,IEEE 2017</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Grey wolf optimization based transmit antenna selection for LTE system, Nitin Deotale, Uttam Kolekar, Anuradha Kondelwar, 2017/3/22, 2017 International Conference on Wireless Communications, Signal Processing and Networking (WiSPNET), 391-396, IEEE, 2017</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Eacsro: epsilon constraint-based adaptive cuckoo search algorithm for rate optimized congestion avoidance and control in wireless sensor networks VE Narawade, UD Kolekar 2017 International Conference on I-SMAC, 2017</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Betterment of resource allocation in OFDM-based Cognitive Radio with weightage based dynamic group search optimization, SS Nanivadekar, UD Kolekar, 2017 International Conference on I-SMAC, 2017</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">AFL-TOHIP: adaptive fractional lion optimization to topology-hiding multi-path routing in mobile ad hoc network, RK Ambekar, UD Kolekar, 2017 International Conference on I-SMAC, 2017</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Congestion avoidance and control in wireless sensor networks: a survey, VE Narawade, UD Kolekar ,2016 International Conference on ICT in Business Industry & Government, 2016</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Ergodic capacity based antenna selection in MIMO for Rayleigh fading, N Deotale, U Kolekar, V Hendre, 2015 International Conference on Information Processing (ICIP), 317-321, 2015</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Fast visual saliency detection with bisection search to scale selection, O Rajankar, U Kolekar, 2015 International Conference on Pervasive Computing (ICPC), 1-6, 2015</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Performance analysis of real and non real time traffic over WLAN using connection admission control policy, Deepak Chatrabhuj Karia, Uttam Dnyanu Kolekar, 2008 Second UKSIM European Symposium on Computer Modeling and Simulation, 548-554, IEEE, 2008</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">ADAPTIVE BANDWIDTH RESERVATION SCHEME FOR MULTIMEDIA WIRELESS LAN, UD Kolekar, SK Bodhe, AR Madane, Advances in Computer Vision and Information Technology, 163, 2008</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Handover Decision Algorithm for Next T, P Sapkale, U Kolekar, International Conference on wireless communications,</p></div>
+        <div class="citation-item fade-in"><p class="citation-text">Performance Analysis using Call Threshold CAC Scheme for MANET in Wireless MAN Uttam D. Kolekar, Shrikant Bodhe and Deepak C. Karia, Proceedings of SPIT-IEEE Colloquium and International Conference, Mumbai, India, Vol. 3, 129</p></div>
+    </div>
+
+  </main>
+
+  <script>
+    // Theme Toggle Logic
+    const themeToggle = document.getElementById('theme-toggle');
+    let manualTheme = localStorage.getItem('theme_ri');
+
+    if (manualTheme === 'light') {
+      document.body.classList.remove('theme-dark');
+    } else {
+      document.body.classList.add('theme-dark');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('theme-dark');
+      manualTheme = document.body.classList.contains('theme-dark') ? 'dark' : 'light';
+      localStorage.setItem('theme_ri', manualTheme);
+    });
+
+    // Scroll Reveal Animation (Optimized for large lists)
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Add a slight delay based on the element's position on screen for a cascading effect
+          const delay = (entry.target.getBoundingClientRect().top % window.innerHeight) * 0.3;
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, delay);
+          obs.unobserve(entry.target); 
+        }
+      });
+    }, { 
+      threshold: 0.05, // Trigger slightly earlier
+      rootMargin: "0px 0px -20px 0px" 
+    });
+
+    document.querySelectorAll('.fade-in').forEach(element => observer.observe(element));
+  </script>
+</body>
+</html>

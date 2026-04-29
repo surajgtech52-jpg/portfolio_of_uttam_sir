@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Uttam D. Kolekar | Citations & Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <style>
+      :root{--bg-main:#f9f8f4;--bg-subtle:#f0ede6;--text-main:#1a1a1a;--text-muted:#4a4a4a;--accent:#a37c44;--accent-glow:rgba(163,124,68,0.15);--border:rgba(0,0,0,0.08);--card-bg:rgba(255,255,255,0.6);--card-hover-bg:rgba(255,255,255,0.95);--blob-1:rgba(30,54,85,0.15);--blob-2:rgba(163,124,68,0.15);--header-gradient:linear-gradient(135deg,#1a1a1a 30%,var(--accent) 100%);--shadow-hover:0 20px 40px rgba(0,0,0,0.08);--transition-smooth:all 0.6s cubic-bezier(0.16,1,0.3,1);}
+      body.theme-dark{--bg-main:#050a15;--bg-subtle:#0b1120;--text-main:#ffffff;--text-muted:rgba(255,255,255,0.65);--accent-glow:rgba(163,124,68,0.3);--border:rgba(255,255,255,0.08);--card-bg:rgba(255,255,255,0.02);--card-hover-bg:rgba(255,255,255,0.04);--blob-1:rgba(30,54,85,0.8);--blob-2:rgba(163,124,68,0.3);--header-gradient:linear-gradient(135deg,#ffffff 30%,var(--accent) 100%);--shadow-hover:0 20px 40px rgba(0,0,0,0.4);}
+      *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+      body{font-family:'Lora',serif;background:var(--bg-main);color:var(--text-main);line-height:1.8;min-height:100vh;overflow-x:hidden;padding:100px 5%;transition:background-color 0.8s,color 0.8s;}
+      body::before,body::after{content:'';position:fixed;width:60vw;height:60vw;border-radius:50%;filter:blur(120px);z-index:-1;pointer-events:none;opacity:0.4;animation:float 20s infinite alternate ease-in-out;transition:background 0.8s ease;}
+      body::before{top:-10vw;left:-10vw;background:radial-gradient(circle,var(--blob-1) 0%,transparent 70%);}
+      body::after{bottom:-20vw;right:-10vw;background:radial-gradient(circle,var(--blob-2) 0%,transparent 70%);animation-delay:-10s;}
+      @keyframes float{0%{transform:translate(0,0) scale(1);}100%{transform:translate(50px,50px) scale(1.1);}}
+      .back-btn,.theme-toggle{position:fixed;top:30px;background:var(--card-bg);border:1px solid var(--border);border-radius:30px;backdrop-filter:blur(10px);color:var(--text-main);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:var(--transition-smooth);z-index:100;box-shadow:0 4px 15px rgba(0,0,0,0.05);}
+      .back-btn{left:40px;gap:10px;font-size:14px;font-weight:500;text-transform:uppercase;padding:12px 24px;text-decoration:none;}
+      .theme-toggle{right:40px;width:44px;height:44px;border-radius:50%;}
+      .back-btn:hover,.theme-toggle:hover{background:var(--card-hover-bg);border-color:var(--accent);transform:translateY(-2px);}
+      .theme-toggle svg{width:20px;height:20px;position:absolute;transition:all 0.6s;}
+      .theme-toggle .sun{transform:translateY(30px) rotate(90deg);opacity:0;}
+      body.theme-dark .theme-toggle .moon{transform:translateY(-30px) rotate(-90deg);opacity:0;}
+      body.theme-dark .theme-toggle .sun{transform:translateY(0) rotate(0);opacity:1;}
+      .container{max-width:1000px;margin:0 auto;position:relative;z-index:10;}
+      .section-divider{text-align:center;margin-bottom:50px;margin-top:20px;}
+      .section-divider h2{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,48px);background:var(--header-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline-block;padding-bottom:10px;font-weight:700;}
+      
+      /* Dashboard Fade-Down UI */
+      .fade-in { opacity: 0; transform: translateY(-40px); filter: blur(8px); transition: opacity 0.8s ease-out, transform 0.8s ease-out, filter 0.8s; will-change: transform, opacity; }
+      .fade-in.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
+      .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 50px; }
+      .metric-card { background: var(--card-bg); padding: 50px 30px; border-radius: 24px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); transition: transform 0.4s, box-shadow 0.4s, border-color 0.4s; border: 1px solid var(--border); backdrop-filter: blur(10px); text-align: center; position:relative; overflow:hidden;}
+      .metric-card:hover { transform: translateY(-10px); box-shadow: 0 0 40px var(--accent-glow); border-color: var(--accent); }
+      .metric-card::after { content:''; position:absolute; inset:0; background:radial-gradient(circle at center, var(--accent-glow) 0%, transparent 60%); opacity:0; transition:opacity 0.4s;}
+      .metric-card:hover::after { opacity:1; }
+      .metric-title { font-size: 16px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; position:relative; z-index:2;}
+      .metric-value { font-size: 5rem; font-weight: 700; font-family: 'Playfair Display', serif; color: var(--text-main); line-height: 1; margin-bottom: 20px; position:relative; z-index:2;}
+      .metric-subtext { font-size: 14px; color: var(--accent); background-color: var(--accent-glow); display: inline-block; padding: 6px 16px; border-radius: 20px; font-weight: 600; position:relative; z-index:2;}
+      .scholar-section { text-align: center; margin-top: 60px; padding:40px; background:var(--card-bg); border-radius:24px; border:1px solid var(--border); backdrop-filter:blur(10px);}
+      .scholar-btn { display: inline-flex; align-items: center; justify-content: center; background: var(--header-gradient); color: #fff; padding: 16px 32px; font-size: 16px; font-weight: 600; text-decoration: none; border-radius: 50px; transition: transform 0.3s, box-shadow 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.1); font-family:'Lora',serif;}
+      .scholar-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 30px var(--accent-glow); }
+      .scholar-btn svg { margin-right: 12px; width: 20px; height: 20px; fill: currentColor; }
+    </style>
+</head>
+<body class="theme-dark">
+  <a href="index.html" class="back-btn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg> Return to Profile
+  </a>
+  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
+    <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+  </button>
+
+    <section id="citations-profile">
+        <div class="container">
+            
+            <div class="section-divider fade-in">
+                <h2>Research Impact & Citations</h2>
+            </div>
+
+            <div class="metrics-grid">
+                
+                <div class="metric-card fade-in">
+                    <div class="metric-title">Total Citations</div>
+                    <div class="metric-value">155</div>
+                    <div class="metric-subtext">141 Since 2017</div>
+                </div>
+
+                <div class="metric-card fade-in" style="transition-delay: 0.1s;">
+                    <div class="metric-title">h-index</div>
+                    <div class="metric-value">7</div>
+                    <div class="metric-subtext">6 Since 2017</div>
+                </div>
+
+                <div class="metric-card fade-in" style="transition-delay: 0.2s;">
+                    <div class="metric-title">i10-index</div>
+                    <div class="metric-value">5</div>
+                    <div class="metric-subtext">4 Since 2017</div>
+                </div>
+
+            </div>
+
+            <div class="scholar-section fade-in" style="transition-delay: 0.3s;">
+                <p style="color: #4a5568; margin-bottom: 20px; font-size: 1.1rem;">View full publication history, co-authors, and real-time metrics on Google Scholar.</p>
+                
+                <a href="https://scholar.google.com/citations?user=78108y0AAAAJ&hl=en&oi=sra" target="_blank" class="scholar-btn">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-2a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-12a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-2a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zm0 7a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0-2a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zM2.5 10.5l9.5-5 9.5 5-9.5 5-9.5-5zM12 14.5l-8-4.2v6.2h16v-6.2l-8 4.2z"/>
+                    </svg>
+                    Visit Google Scholar Profile
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    let manualTheme = localStorage.getItem('theme_ri');
+    if (manualTheme === 'light') document.body.classList.remove('theme-dark');
+    else document.body.classList.add('theme-dark');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('theme-dark');
+      localStorage.setItem('theme_ri', document.body.classList.contains('theme-dark') ? 'dark' : 'light');
+    });
+    const observer = new IntersectionObserver((entries, obs) => {
+      let delay = 0;
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, delay);
+          delay += 100;
+          obs.unobserve(entry.target); 
+        }
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+    document.querySelectorAll('.fade-in').forEach(element => observer.observe(element));
+  </script>
+</body>
+</html>
